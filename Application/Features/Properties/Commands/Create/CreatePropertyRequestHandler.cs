@@ -1,24 +1,13 @@
-﻿using Application.Models;
-using Application.Repositories;
+﻿using Application.Repositories;
 using AutoMapper;
 using Domain;
 using MediatR;
 
-namespace Application.Features.Properties.Commands;
-
-public class CreatePropertyRequest : IRequest<bool>
-{
-    public NewPropertyRequest PropertyRequest { get; set; }
-
-    public CreatePropertyRequest(NewPropertyRequest newPropertyRequest)
-    {
-        PropertyRequest = newPropertyRequest;
-    }
-}
+namespace Application.Features.Properties.Commands.Create;
 
 public class CreatePropertyRequestHandler : IRequestHandler<CreatePropertyRequest, bool>
 {
-    private readonly IPropertyRepo _propertyRepo;    
+    private readonly IPropertyRepo _propertyRepo;
     private readonly IMapper _mapper;
 
     public CreatePropertyRequestHandler(IPropertyRepo propertyRepo, IMapper mapper)
@@ -30,6 +19,7 @@ public class CreatePropertyRequestHandler : IRequestHandler<CreatePropertyReques
     public async Task<bool> Handle(CreatePropertyRequest request, CancellationToken cancellationToken)
     {
         Property property = _mapper.Map<Property>(request.PropertyRequest);
+        property.ListDate = DateTime.Now;
 
         await _propertyRepo.AddNewAsync(property);
 
