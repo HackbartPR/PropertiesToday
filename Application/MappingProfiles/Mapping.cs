@@ -8,7 +8,8 @@ public class Mapping : Profile
 {
     public Mapping()
     {
-        CreateMap<NewProperty, Property>();
+        CreateMap<NewProperty, Property>().ReverseMap();
         CreateMap<UpdateProperty, Property>().ReverseMap();
+        CreateMap<ShowProperty, Property>().ReverseMap();
     }
 }

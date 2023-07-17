@@ -1,5 +1,6 @@
 ﻿using Application.Features.Properties.Commands.Create;
 using Application.Features.Properties.Commands.Update;
+using Application.Features.Properties.Queries.Show;
 using Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,19 @@ public class PropertiesController : ControllerBase
         }
 
         return Ok("Atualizado com sucesso");
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ShowProperty(int id)
+    {
+        ShowProperty showProperty = await _mediatrSender.Send(new ShowPropertyRequest(id));
+
+        if (showProperty == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(showProperty);
     }
 
 }
