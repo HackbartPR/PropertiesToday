@@ -47,14 +47,14 @@ public class PropertiesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> ShowProperty(int id)
     {
-        ShowProperty showProperty = await _mediatrSender.Send(new ShowPropertyRequest(id));
+        PropertyDto property = await _mediatrSender.Send(new ShowPropertyRequest(id));
 
-        if (showProperty == null)
+        if (property == null)
         {
             return NotFound();
         }
 
-        return Ok(showProperty);
+        return Ok(property);
     }
 
 }

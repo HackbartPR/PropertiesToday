@@ -10,6 +10,6 @@ public class Mapping : Profile
     {
         CreateMap<NewProperty, Property>().ReverseMap();
         CreateMap<UpdateProperty, Property>().ReverseMap();
-        CreateMap<ShowProperty, Property>().ReverseMap();
+        CreateMap<PropertyDto, Property>().ReverseMap();
     }
 }

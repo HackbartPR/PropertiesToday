@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Features.Properties.Queries.Show;
 
-public class ShowPropertyRequestHandler : IRequestHandler<ShowPropertyRequest, ShowProperty>
+public class ShowPropertyRequestHandler : IRequestHandler<ShowPropertyRequest, PropertyDto>
 {
     private readonly IPropertyRepo _propertyRepo;
     private readonly IMapper _mapper;
@@ -17,10 +17,10 @@ public class ShowPropertyRequestHandler : IRequestHandler<ShowPropertyRequest, S
         _mapper = mapper;
     }
 
-    public async Task<ShowProperty> Handle(ShowPropertyRequest request, CancellationToken cancellationToken)
+    public async Task<PropertyDto> Handle(ShowPropertyRequest request, CancellationToken cancellationToken)
     {
         Property property = await _propertyRepo.GetByIdAsync(request.Id);        
 
-        return _mapper.Map<ShowProperty>(property);
+        return _mapper.Map<PropertyDto>(property);
     }
 }

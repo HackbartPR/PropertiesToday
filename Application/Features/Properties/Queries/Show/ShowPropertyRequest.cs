@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Features.Properties.Queries.Show;
 
-public class ShowPropertyRequest : IRequest<ShowProperty>
+public class ShowPropertyRequest : IRequest<PropertyDto>
 {
     public int Id { get; set; }
 
