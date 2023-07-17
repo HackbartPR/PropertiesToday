@@ -1,6 +1,6 @@
 ﻿namespace Application.Models;
 
-public class ShowProperty
+public class PropertyDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

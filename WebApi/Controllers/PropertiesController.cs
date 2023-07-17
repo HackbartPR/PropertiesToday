@@ -1,5 +1,6 @@
 ﻿using Application.Features.Properties.Commands.Create;
 using Application.Features.Properties.Commands.Update;
+using Application.Features.Properties.Queries.List;
 using Application.Features.Properties.Queries.Show;
 using Application.Models;
 using MediatR;
@@ -55,6 +56,14 @@ public class PropertiesController : ControllerBase
         }
 
         return Ok(property);
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> ListProperties()
+    {
+        List<PropertyDto> listProperties = await _mediatrSender.Send(new ListPropertyRequest());
+
+        return Ok(listProperties);
     }
 
 }
