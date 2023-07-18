@@ -28,12 +28,16 @@ public class ImageRepo : IImageRepo
 
     public async Task<List<Image>> GetAllAsync()
     {
-        return await _context.Images.ToListAsync();
+        return await _context.Images
+            .Include(i => i.PropertyId)
+            .ToListAsync();
     }
 
     public async Task<Image> GetByAsync(int id)
     {
-        return await _context.Images.FirstOrDefaultAsync(x => x.Id == id);
+        return await _context.Images
+            .Include(i => i.PropertyId)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateAsync(Image image)
