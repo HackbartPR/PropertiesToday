@@ -1,4 +1,4 @@
-﻿using Application.Models;
+﻿using Application.Models.Property;
 using MediatR;
 
 namespace Application.Features.Properties.Commands.Update;

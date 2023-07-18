@@ -1,4 +1,5 @@
-﻿using Application.Models;
+﻿using Application.Models.Image;
+using Application.Models.Property;
 using AutoMapper;
 using Domain;
 
@@ -11,5 +12,7 @@ public class Mapping : Profile
         CreateMap<NewProperty, Property>().ReverseMap();
         CreateMap<UpdateProperty, Property>().ReverseMap();
         CreateMap<PropertyDto, Property>().ReverseMap();
+
+        CreateMap<NewImage, Image>().ReverseMap();
     }
 }

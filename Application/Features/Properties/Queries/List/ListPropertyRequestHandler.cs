@@ -1,4 +1,4 @@
-﻿using Application.Models;
+﻿using Application.Models.Property;
 using Application.Repositories;
 using AutoMapper;
 using Domain;

@@ -3,9 +3,9 @@ using Application.Features.Properties.Commands.Update;
 using Application.Features.Properties.Commands.Delete;
 using Application.Features.Properties.Queries.List;
 using Application.Features.Properties.Queries.Show;
-using Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Application.Models.Property;
 
 namespace WebApi.Controllers;
 

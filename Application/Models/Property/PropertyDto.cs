@@ -1,6 +1,6 @@
-﻿namespace Application.Models;
+﻿namespace Application.Models.Property;
 
-public class UpdateProperty
+public class PropertyDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -18,4 +18,5 @@ public class UpdateProperty
     public int Kitchens { get; set; }
     public int Louge { get; set; }
     public int Dining { get; set; }
+    public DateTime ListDate { get; set; }
 }

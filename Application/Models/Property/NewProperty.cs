@@ -1,8 +1,7 @@
-﻿namespace Application.Models;
+﻿namespace Application.Models.Property;
 
-public class PropertyDto
+public class NewProperty
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string Type { get; set; }
@@ -18,5 +17,4 @@ public class PropertyDto
     public int Kitchens { get; set; }
     public int Louge { get; set; }
     public int Dining { get; set; }
-    public DateTime ListDate { get; set; }
 }
