@@ -1,5 +1,6 @@
 ﻿using Application.Features.Properties.Commands.Create;
 using Application.Features.Properties.Commands.Update;
+using Application.Features.Properties.Commands.Delete;
 using Application.Features.Properties.Queries.List;
 using Application.Features.Properties.Queries.Show;
 using Application.Models;
@@ -64,6 +65,19 @@ public class PropertiesController : ControllerBase
         List<PropertyDto> listProperties = await _mediatrSender.Send(new ListPropertyRequest());
 
         return Ok(listProperties);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProperty(int id)
+    {
+        bool isDeleted = await _mediatrSender.Send(new DeletePropertyRequest(id));
+
+        if (!isDeleted)
+        {
+            return NotFound();
+        }
+
+        return Ok();
     }
 
 }
