@@ -1,4 +1,5 @@
 ﻿using Application.Features.Images.Commands.Create;
+using Application.Features.Images.Commands.Update;
 using Application.Models.Image;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -27,5 +28,16 @@ public class ImagesController : ControllerBase
         }
 
         return Ok("Cadastrado com sucesso");
+    }
+
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateImage([FromBody] UpdateImage updateImage)
+    {
+        bool isSuccessful = await _mediatrSender.Send(new UpdateImageRequest(updateImage));
+
+        if (!isSuccessful)
+            return BadRequest("Imagem não encontrada");
+
+        return Ok("Atualizado com sucesso");
     }
 }

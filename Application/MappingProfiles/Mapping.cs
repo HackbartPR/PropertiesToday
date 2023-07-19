@@ -14,5 +14,6 @@ public class Mapping : Profile
         CreateMap<PropertyDto, Property>().ReverseMap();
 
         CreateMap<NewImage, Image>().ReverseMap();
+        CreateMap<UpdateImage, Image>().ReverseMap();
     }
 }
