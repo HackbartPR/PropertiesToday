@@ -1,6 +1,7 @@
 ﻿using Application.Features.Images.Commands.Create;
 using Application.Features.Images.Commands.Delete;
 using Application.Features.Images.Commands.Update;
+using Application.Features.Images.Queries.List;
 using Application.Features.Images.Queries.Show;
 using Application.Models.Image;
 using MediatR;
@@ -63,5 +64,13 @@ public class ImagesController : ControllerBase
             return NotFound("Imagem não encontrada");
 
         return Ok(imageDto);
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> ListAllImages()
+    {
+        List<ImageDto> images = await _mediatrSender.Send(new ListImageRequest());
+        
+        return Ok(images);
     }
 }
