@@ -1,4 +1,5 @@
 ﻿using Application.Features.Images.Commands.Create;
+using Application.Features.Images.Commands.Delete;
 using Application.Features.Images.Commands.Update;
 using Application.Models.Image;
 using MediatR;
@@ -39,5 +40,16 @@ public class ImagesController : ControllerBase
             return BadRequest("Imagem não encontrada");
 
         return Ok("Atualizado com sucesso");
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteImage(int id)
+    {
+        bool isDeleted = await _mediatrSender.Send(new DeleteImageRequest(id));
+
+        if (!isDeleted)
+            return BadRequest("Imagem não pode ser deletada");
+
+        return Ok("Deletado com sucesso");
     }
 }
