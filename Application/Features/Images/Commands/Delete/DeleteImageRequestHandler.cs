@@ -15,7 +15,7 @@ public class DeleteImageRequestHandler : IRequestHandler<DeleteImageRequest, boo
 
     public async Task<bool> Handle(DeleteImageRequest request, CancellationToken cancellationToken)
     {
-        Image image = await _repo.GetByAsync(request.Id);
+        Image image = await _repo.GetByIdAsync(request.Id);
 
         if (image == null)
             return false;

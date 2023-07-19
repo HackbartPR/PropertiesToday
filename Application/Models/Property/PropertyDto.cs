@@ -1,4 +1,6 @@
-﻿namespace Application.Models.Property;
+﻿using Application.Models.Image;
+
+namespace Application.Models.Property;
 
 public class PropertyDto
 {

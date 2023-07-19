@@ -1,6 +1,7 @@
 ﻿using Application.Features.Images.Commands.Create;
 using Application.Features.Images.Commands.Delete;
 using Application.Features.Images.Commands.Update;
+using Application.Features.Images.Queries.Show;
 using Application.Models.Image;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -51,5 +52,16 @@ public class ImagesController : ControllerBase
             return BadRequest("Imagem não pode ser deletada");
 
         return Ok("Deletado com sucesso");
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ShowImage(int id)
+    {
+        ImageDto imageDto = await _mediatrSender.Send(new ShowImageRequest(id));
+
+        if (imageDto == null)
+            return NotFound("Imagem não encontrada");
+
+        return Ok(imageDto);
     }
 }

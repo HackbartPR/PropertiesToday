@@ -33,7 +33,7 @@ public class ImageRepo : IImageRepo
             .ToListAsync();
     }
 
-    public async Task<Image> GetByAsync(int id)
+    public async Task<Image> GetByIdAsync(int id)
     {
         return await _context.Images
             .Include(i => i.Property)

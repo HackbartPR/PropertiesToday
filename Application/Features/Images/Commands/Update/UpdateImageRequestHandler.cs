@@ -23,7 +23,7 @@ public class UpdateImageRequestHandler : IRequestHandler<UpdateImageRequest, boo
         if (await _propertyRepo.GetByIdAsync(request.UpdateImage.PropertyId) == null)
             return false;
 
-        Image image = await _imageRepo.GetByAsync(request.UpdateImage.Id);
+        Image image = await _imageRepo.GetByIdAsync(request.UpdateImage.Id);
 
         if (image == null || image.Property == null)
             return false;
