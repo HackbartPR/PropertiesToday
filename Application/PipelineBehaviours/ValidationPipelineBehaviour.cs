@@ -1,5 +1,7 @@
-﻿using FluentValidation;
+﻿using Application.Exceptions;
+using FluentValidation;
 using MediatR;
+using System.Diagnostics.Contracts;
 
 namespace Application.PipelineBehaviours;
 
@@ -24,6 +26,17 @@ public class ValidationPipelineBehaviour<TRequest, TResponse> : IPipelineBehavio
             var failures = validationResults
                 .SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
+            List<string> errors = new();
+            if (failures.Any())
+            {
+                failures.ForEach(f => { 
+                    errors.Add(f.ErrorMessage);
+                });
+
+                throw new CustomValidationException(errors, "Uma ou mais validações falharam.");
+            }
         }
+
+        return await next();
     }
 }
